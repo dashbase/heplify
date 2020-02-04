@@ -6,7 +6,7 @@ COPY . /heplify
 WORKDIR /heplify
 RUN CGO_ENABLED=1 GOOS=linux go build -a --ldflags '-linkmode external -extldflags "-static -s -w"' -o heplify .
 
-FROM scratch
+FROM alpine
 COPY --from=builder /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/ca-certificates.crt
 COPY --from=builder /heplify/heplify .
 CMD ["./heplify", "-h"]

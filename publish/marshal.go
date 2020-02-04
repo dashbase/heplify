@@ -359,6 +359,30 @@ func (h *HepMsg) String() string {
 	return s
 }
 
+func (h *HepMsg) toLogString() string {
+	if h == nil {
+		return ""
+	}
+	s := strings.Join([]string{
+		`HEP Package `,
+		`Version:` + fmt.Sprintf("%v", h.Version) + `,`,
+		`Protocol:` + fmt.Sprintf("%v", h.Protocol) + `,`,
+		`SrcIP:` + fmt.Sprintf("%v", h.SrcIP) + `,`,
+		`DstIP:` + fmt.Sprintf("%v", h.DstIP) + `,`,
+		`SrcPort:` + fmt.Sprintf("%v", h.SrcPort) + `,`,
+		`DstPort:` + fmt.Sprintf("%v", h.DstPort) + `,`,
+		`Tsec:` + fmt.Sprintf("%v", h.Tsec) + `,`,
+		`Tmsec:` + fmt.Sprintf("%v", h.Tmsec) + `,`,
+		`ProtoType:` + fmt.Sprintf("%v", h.ProtoType) + `,`,
+		`NodeID:` + fmt.Sprintf("%v", h.NodeID) + `,`,
+		`NodePW:` + fmt.Sprintf("%s", h.NodePW) + `,`,
+		`CID:` + fmt.Sprintf("%s", h.CID) + `,`,
+		`Vlan:` + fmt.Sprintf("%v", h.Vlan) + `,`,
+		"Payload:\n" + fmt.Sprintf("%s", string(h.Payload)),
+	}, "")
+	return s
+}
+
 func unsafeBytesToStr(z []byte) string {
 	return *(*string)(unsafe.Pointer(&z))
 }

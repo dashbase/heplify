@@ -17,7 +17,7 @@ func (fo *FileOutputer) Output(msg []byte) {
 	*/
 	h, err := DecodeHEP(msg)
 	if err == nil {
-		logp.Info("%s\n", h.String())
+		logp.Info("%s\n", h.toLogString())
 	} else {
 		logp.Warn("%s", err)
 	}
